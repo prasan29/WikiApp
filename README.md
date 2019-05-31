@@ -1,2 +1,2 @@
 # WikiApp
-Android application to search for information on Wikipedia.
+Android application mTo search for information on Wikipedia.

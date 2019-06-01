@@ -1,18 +1,24 @@
 package app.wiki.com.wikiapp.model;
 
+import android.support.annotation.NonNull;
+
+import com.google.gson.annotations.SerializedName;
+
 public class Terms {
-    private String[] mDescription;
+    @SerializedName("description")
+    private String[] description;
 
     public String[] getDescription() {
-        return mDescription;
+        return description;
     }
 
-    public void setmDescription(String[] description) {
-        this.mDescription = description;
+    public void setDescription(String[] description) {
+        this.description = description;
     }
 
+    @NonNull
     @Override
     public String toString() {
-        return "ClassPojo [mDescription = " + mDescription + "]";
+        return "ClassPojo [description = " + description + "]";
     }
 }

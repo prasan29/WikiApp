@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Wiki App</string>
+    <string name="display_picture">display_picture</string>
 </resources>

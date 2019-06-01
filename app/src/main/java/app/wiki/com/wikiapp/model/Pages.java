@@ -1,68 +1,114 @@
 package app.wiki.com.wikiapp.model;
 
-public class Pages {
-    private Thumbnail mThumbnail;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
-    private String mNs;
+import com.google.gson.annotations.SerializedName;
 
-    private Terms mTerms;
+public class Pages implements Parcelable {
+    @SerializedName("thumbnail")
+    private Thumbnail thumbnail;
 
-    private String mIndex;
+    @SerializedName("ns")
+    private String ns;
 
-    private String mPageId;
+    @SerializedName("terms")
+    private Terms terms;
 
-    private String mTitle;
+    @SerializedName("index")
+    private String index;
+
+    @SerializedName("pageid")
+    private String pageid;
+
+    @SerializedName("title")
+    private String title;
+
+    protected Pages(Parcel in) {
+        ns = in.readString();
+        index = in.readString();
+        pageid = in.readString();
+        title = in.readString();
+    }
+
+    public static final Creator<Pages> CREATOR = new Creator<Pages>() {
+        @Override
+        public Pages createFromParcel(Parcel in) {
+            return new Pages(in);
+        }
+
+        @Override
+        public Pages[] newArray(int size) {
+            return new Pages[size];
+        }
+    };
 
     public Thumbnail getThumbnail() {
-        return mThumbnail;
+        return thumbnail;
     }
 
     public void setThumbnail(Thumbnail thumbnail) {
-        this.mThumbnail = thumbnail;
+        this.thumbnail = thumbnail;
     }
 
     public String getNs() {
-        return mNs;
+        return ns;
     }
 
     public void setNs(String ns) {
-        this.mNs = ns;
+        this.ns = ns;
     }
 
     public Terms getTerms() {
-        return mTerms;
+        return terms;
     }
 
     public void setTerms(Terms terms) {
-        this.mTerms = terms;
+        this.terms = terms;
     }
 
     public String getIndex() {
-        return mIndex;
+        return index;
     }
 
     public void setIndex(String index) {
-        this.mIndex = index;
+        this.index = index;
     }
 
-    public String getPageId() {
-        return mPageId;
+    public String getPageid() {
+        return pageid;
     }
 
-    public void setPageId(String pageId) {
-        this.mPageId = pageId;
+    public void setPageid(String pageid) {
+        this.pageid = pageid;
     }
 
     public String getTitle() {
-        return mTitle;
+        return title;
     }
 
     public void setTitle(String title) {
-        this.mTitle = title;
+        this.title = title;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "ClassPojo [thumbnail = " + thumbnail + ", ns = " + ns + ", terms = " + terms
+                + ", index = " + index + ", pageid = " + pageid + ", title = " + title + "]";
     }
 
     @Override
-    public String toString() {
-        return "ClassPojo [mThumbnail = " + mThumbnail + ", mNs = " + mNs + ", mTerms = " + mTerms + ", mIndex = " + mIndex + ", mPageId = " + mPageId + ", mTitle = " + mTitle + "]";
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(ns);
+        dest.writeString(index);
+        dest.writeString(pageid);
+        dest.writeString(title);
     }
 }

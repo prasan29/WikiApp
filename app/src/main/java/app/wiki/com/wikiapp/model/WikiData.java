@@ -1,38 +1,46 @@
 package app.wiki.com.wikiapp.model;
 
+import android.support.annotation.NonNull;
+
+import com.google.gson.annotations.SerializedName;
+
 public class WikiData {
-    private String mBatchComplete;
+    private String batchcomplete;
 
-    private Continue mContinue;
+    @SerializedName("continue")
+    private Continue mCcontinue;
 
-    private Query mQuery;
+    @SerializedName("query")
+    private Query query;
 
-    public String getBatchComplete() {
-        return mBatchComplete;
+    public String getBatchcomplete() {
+        return batchcomplete;
     }
 
-    public void setBatchComplete(String mBatchComplete) {
-        this.mBatchComplete = mBatchComplete;
+    public void setBatchcomplete(String batchcomplete) {
+        this.batchcomplete = batchcomplete;
     }
 
     public Continue getContinue() {
-        return mContinue;
+        return mCcontinue;
     }
 
-    public void setContinue(Continue continueObject) {
-        this.mContinue = continueObject;
+    public void setContinue(Continue continueObj) {
+        this.mCcontinue = continueObj;
     }
 
     public Query getQuery() {
-        return mQuery;
+        return query;
     }
 
-    public void setQuery(Query mQuery) {
-        this.mQuery = mQuery;
+    public void setQuery(Query query) {
+        this.query = query;
     }
 
+    @NonNull
     @Override
     public String toString() {
-        return "ClassPojo [mBatchComplete = " + mBatchComplete + ", continue = " + mContinue + ", mQuery = " + mQuery + "]";
+        return "ClassPojo [batchcomplete = " + batchcomplete + ", continue = " + mCcontinue
+                + ", query = " + query + "]";
     }
 }

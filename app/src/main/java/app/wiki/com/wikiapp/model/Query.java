@@ -1,28 +1,32 @@
 package app.wiki.com.wikiapp.model;
 
-public class Query {
-    private Pages[] mPages;
+import com.google.gson.annotations.SerializedName;
 
-    private Redirects[] mRedirects;
+public class Query {
+    @SerializedName("pages")
+    private Pages[] pages;
+
+    @SerializedName("redirects")
+    private Redirects[] redirects;
 
     public Pages[] getPages() {
-        return mPages;
+        return pages;
     }
 
-    public void setPages(Pages[] mPages) {
-        this.mPages = mPages;
+    public void setPages(Pages[] pages) {
+        this.pages = pages;
     }
 
     public Redirects[] getRedirects() {
-        return mRedirects;
+        return redirects;
     }
 
-    public void setRedirects(Redirects[] mRedirects) {
-        this.mRedirects = mRedirects;
+    public void setRedirects(Redirects[] redirects) {
+        this.redirects = redirects;
     }
 
     @Override
     public String toString() {
-        return "ClassPojo [mPages = " + mPages + ", mRedirects = " + mRedirects + "]";
+        return "ClassPojo [pages = " + pages + ", redirects = " + redirects + "]";
     }
 }

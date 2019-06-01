@@ -1,38 +1,46 @@
 package app.wiki.com.wikiapp.model;
 
+import android.support.annotation.NonNull;
+
+import com.google.gson.annotations.SerializedName;
+
 public class Redirects {
-    private String mIndex;
+    @SerializedName("index")
+    private String index;
 
-    private String mFrom;
+    @SerializedName("from")
+    private String from;
 
-    private String mTo;
+    @SerializedName("to")
+    private String to;
 
     public String getIndex() {
-        return mIndex;
+        return index;
     }
 
-    public void setIndex(String mIndex) {
-        this.mIndex = mIndex;
+    public void setIndex(String index) {
+        this.index = index;
     }
 
     public String getFrom() {
-        return mFrom;
+        return from;
     }
 
     public void setFrom(String from) {
-        this.mFrom = from;
+        this.from = from;
     }
 
     public String getTo() {
-        return mTo;
+        return to;
     }
 
-    public void setTo(String mTo) {
-        this.mTo = mTo;
+    public void setTo(String to) {
+        this.to = to;
     }
 
+    @NonNull
     @Override
     public String toString() {
-        return "ClassPojo [mIndex = " + mIndex + ", mFrom = " + mFrom + ", mTo = " + mTo + "]";
+        return "ClassPojo [index = " + index + ", from = " + from + ", to = " + to + "]";
     }
 }

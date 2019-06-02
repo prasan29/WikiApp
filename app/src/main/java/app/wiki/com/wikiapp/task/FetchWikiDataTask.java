@@ -4,12 +4,6 @@ import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.google.gson.Gson;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import app.wiki.com.wikiapp.Constants;
 import app.wiki.com.wikiapp.interfaces.WikiInformationListener;
 import app.wiki.com.wikiapp.model.WikiData;
 import app.wiki.com.wikiapp.network.APIClientHelper;
@@ -20,6 +14,9 @@ import retrofit2.Response;
 
 import static app.wiki.com.wikiapp.Constants.TAG;
 
+/**
+ * Task Class for API calls.
+ */
 public class FetchWikiDataTask extends AsyncTask<String, Void, Void> {
     private WikiInformationListener mListener;
 
@@ -38,21 +35,21 @@ public class FetchWikiDataTask extends AsyncTask<String, Void, Void> {
         return null;
     }
 
-    private WikiData getSampleData() {
-        try {
-            JSONObject jsonObject = new JSONObject(Constants.DATA);
-            return new Gson().fromJson(jsonObject.toString(), WikiData.class);
-        } catch (JSONException e) {
-            Log.e(TAG, e.getLocalizedMessage(), e);
-        }
-
-        return null;
-    }
-
+    /**
+     * Interface to receive event callback with WikiData object.
+     */
     private interface IWikiDataEvent {
+        /**
+         * Method to receive information event.
+         *
+         * @param wikiData - WikiData object received from JSON data.
+         */
         void onWikiDataEvent(WikiData wikiData);
     }
 
+    /**
+     * Class for Response callbacks.
+     */
     private class WikiCallback implements Callback<WikiData> {
         IWikiDataEvent mIWikiDataEvent;
 

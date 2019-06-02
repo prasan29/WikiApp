@@ -7,6 +7,9 @@ import android.graphics.Paint;
 
 import com.squareup.picasso.Transformation;
 
+/**
+ * Class for drawing Circle avatar.
+ */
 public final class CircleTransform implements Transformation {
     private static CircleTransform mCircleTransform;
 
@@ -14,6 +17,11 @@ public final class CircleTransform implements Transformation {
         // Private Constructor for SingleTon pattern.
     }
 
+    /**
+     * Method to get the CircleTransform SingleTon instance.
+     *
+     * @return - CircleTransform object.
+     */
     public static CircleTransform getInstance() {
         if (mCircleTransform == null) {
             mCircleTransform = new CircleTransform();

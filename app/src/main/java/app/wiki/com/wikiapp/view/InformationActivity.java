@@ -35,14 +35,24 @@ public class InformationActivity extends AppCompatActivity {
         loadData(page, imageUrl);
     }
 
+    /**
+     * Method to set the fetched data into the Views.
+     *
+     * @param page      - Wiki data with Page information.
+     * @param thumbnail - Thumbnail information.
+     */
     private void loadData(Pages page, Thumbnail thumbnail) {
         if (page != null) {
             mInformationBinding.getViewModel().mTitle.setValue(page.getTitle());
 
             Terms terms = page.getTerms();
 
-            for (int i = 0; i < terms.getDescription().length; i++) {
-                mInformationBinding.getViewModel().mDescription.setValue(terms.getDescription()[i]+"\n");
+            if (terms != null) {
+                if (terms.getDescription() != null) {
+                    for (int i = 0; i < terms.getDescription().length; i++) {
+                        mInformationBinding.getViewModel().mDescription.setValue(terms.getDescription()[i] + "\n");
+                    }
+                }
             }
 
             if (thumbnail != null) {

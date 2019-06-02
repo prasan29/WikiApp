@@ -11,15 +11,26 @@ public class WikiViewModel extends ViewModel {
     public MutableLiveData<String> mSearchText = new MutableLiveData<>();
     private TaskHandler mTaskHandler;
 
+    /**
+     * Constructor for WikiViewModel.
+     *
+     * @param lifeCycleOwner - LifeCycleOwner object for LiveData scope.
+     * @param listener       - WikiInformationListener for receiving callback for WikiData.
+     */
     public WikiViewModel(LifecycleOwner lifeCycleOwner, WikiInformationListener listener) {
         mTaskHandler = TaskHandler.getInstance(listener);
         mSearchText.observe(lifeCycleOwner, query -> {
-            if ("".equals(query)) {
+            if (!"".equals(query)) {
                 WikiViewModel.this.populateList(query);
             }
         });
     }
 
+    /**
+     * Method to fetch the Wiki information using the query.
+     *
+     * @param query - String query.
+     */
     private void populateList(String query) {
         mTaskHandler.fetchWikiData(query);
     }

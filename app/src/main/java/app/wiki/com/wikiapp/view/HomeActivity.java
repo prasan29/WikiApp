@@ -4,10 +4,8 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Toast;
 
-import app.wiki.com.wikiapp.Constants;
 import app.wiki.com.wikiapp.R;
 import app.wiki.com.wikiapp.adapter.WikiItemAdapter;
 import app.wiki.com.wikiapp.databinding.ActivityHomeBinding;
@@ -31,14 +29,19 @@ public class HomeActivity extends AppCompatActivity implements WikiInformationLi
     @Override
     public void onInformationReceived(WikiData wikiData) {
         if (wikiData != null) {
-            WikiItemAdapter adapter = new WikiItemAdapter(wikiData.getQuery().getPages(), this);
-            for (Pages page : wikiData.getQuery().getPages()) {
-                Log.e(Constants.TAG, page.getTitle());
+            if (wikiData.getQuery() != null) {
+                Pages[] pages = wikiData.getQuery().getPages();
+                if (pages != null) {
+                    WikiItemAdapter adapter = new WikiItemAdapter(pages, this);
+                    mBinding.setAdapter(adapter);
+                } else {
+                    Toast.makeText(this, "Error loading the page!", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, "Error loading the page!", Toast.LENGTH_SHORT).show();
             }
-            mBinding.setAdapter(adapter);
-            Toast.makeText(this, "WikiData Full", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "WikiData Null", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error fetching the data!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -48,5 +51,11 @@ public class HomeActivity extends AppCompatActivity implements WikiInformationLi
         intent.putExtra("wiki_data_image", page.getThumbnail());
         intent.putExtra("wiki_data", page);
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
     }
 }

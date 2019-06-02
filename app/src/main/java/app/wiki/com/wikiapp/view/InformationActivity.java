@@ -9,6 +9,7 @@ import java.util.Objects;
 import app.wiki.com.wikiapp.R;
 import app.wiki.com.wikiapp.databinding.ActivityInformationBinding;
 import app.wiki.com.wikiapp.model.Pages;
+import app.wiki.com.wikiapp.model.Terms;
 import app.wiki.com.wikiapp.model.Thumbnail;
 import app.wiki.com.wikiapp.viewmodel.WikiDataViewModel;
 
@@ -37,6 +38,12 @@ public class InformationActivity extends AppCompatActivity {
     private void loadData(Pages page, Thumbnail thumbnail) {
         if (page != null) {
             mInformationBinding.getViewModel().mTitle.setValue(page.getTitle());
+
+            Terms terms = page.getTerms();
+
+            for (int i = 0; i < terms.getDescription().length; i++) {
+                mInformationBinding.getViewModel().mDescription.setValue(terms.getDescription()[i]+"\n");
+            }
 
             if (thumbnail != null) {
                 mInformationBinding.getViewModel().mImageUrl.setValue(thumbnail.getSource());

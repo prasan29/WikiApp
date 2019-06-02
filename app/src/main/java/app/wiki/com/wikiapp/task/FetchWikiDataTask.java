@@ -1,7 +1,5 @@
 package app.wiki.com.wikiapp.task;
 
-import static app.wiki.com.wikiapp.Constants.TAG;
-
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -20,19 +18,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static app.wiki.com.wikiapp.Constants.TAG;
+
 public class FetchWikiDataTask extends AsyncTask<String, Void, Void> {
     private WikiInformationListener mListener;
 
     FetchWikiDataTask(WikiInformationListener listener) {
         mListener = listener;
-    }
-
-    private static void display(WikiData wikiData) {
-        if (wikiData != null) {
-            Log.v(TAG + "_debug", wikiData.toString());
-        } else {
-            Log.v(TAG + "_debug", "WikiData null");
-        }
     }
 
     @Override
@@ -70,15 +62,12 @@ public class FetchWikiDataTask extends AsyncTask<String, Void, Void> {
 
         @Override
         public void onResponse(@NonNull Call<WikiData> call, @NonNull Response<WikiData> response) {
-            display(response.body());
             mIWikiDataEvent.onWikiDataEvent(response.body());
         }
 
         @Override
         public void onFailure(@NonNull Call<WikiData> call, @NonNull Throwable t) {
             Log.e(TAG, t.getLocalizedMessage());
-            //TODO: Remove. Only for testing.
-            mIWikiDataEvent.onWikiDataEvent(null);
         }
     }
 }

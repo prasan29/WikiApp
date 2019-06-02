@@ -11,7 +11,7 @@ public final class CircleTransform implements Transformation {
     private static CircleTransform mCircleTransform;
 
     private CircleTransform() {
-
+        // Private Constructor for SingleTon pattern.
     }
 
     public static CircleTransform getInstance() {

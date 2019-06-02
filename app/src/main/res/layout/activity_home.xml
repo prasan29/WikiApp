@@ -5,17 +5,19 @@
 
         <variable
             name="viewModel"
-            type="app.wiki.com.wikiapp.viewmodel.WikiViewModel"/>
+            type="app.wiki.com.wikiapp.viewmodel.WikiViewModel" />
 
-        <variable name="adapter" type="app.wiki.com.wikiapp.adapter.WikiItemAdapter"/>
+        <variable
+            name="adapter"
+            type="app.wiki.com.wikiapp.adapter.WikiItemAdapter" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  xmlns:tools="http://schemas.android.com/tools"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:orientation="vertical"
-                  tools:context=".view.HomeActivity">
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".view.HomeActivity">
 
         <EditText
             android:layout_width="match_parent"
@@ -23,15 +25,16 @@
             android:layout_margin="12dp"
             android:drawableEnd="@drawable/ic_search"
             android:focusable="true"
+            android:hint="@string/query_hint"
             android:maxLines="1"
             android:singleLine="true"
-            android:text="@={viewModel.mSearchText}"/>
+            android:text="@={viewModel.mSearchText}" />
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adapter="@{adapter}"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
     </LinearLayout>
 </layout>

@@ -13,7 +13,11 @@ public class WikiViewModel extends ViewModel {
 
     public WikiViewModel(LifecycleOwner lifeCycleOwner, WikiInformationListener listener) {
         mTaskHandler = TaskHandler.getInstance(listener);
-        mSearchText.observe(lifeCycleOwner, WikiViewModel.this::populateList);
+        mSearchText.observe(lifeCycleOwner, query -> {
+            if ("".equals(query)) {
+                WikiViewModel.this.populateList(query);
+            }
+        });
     }
 
     private void populateList(String query) {
